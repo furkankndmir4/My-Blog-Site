@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kişisel Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /* Genel Stil */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F1ECE9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Flex yönü dikey */
+            min-height: 100vh; /* Tüm ekranı kapsaması için */
+        }
+
+        /* Kenar Çubuğu (Sidebar) */
+        nav {
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #583E2F;
+            padding-top: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+        }
+
+        nav a {
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #76533F;
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column; /* İkonları alt alta sıralar */
+            align-items: center; /* İkonları ortalar */
+            margin-right: 135px;
+        }
+
+        .social-links a {
+            display: inline-block; /* Linki sadece ikona sınırlayacak */
+            padding: 10px 0; /* Ekstra boşlukları sıfırla */
+        }
+
+        .social-links a i {
+            font-size: 30px;
+            color: white;
+        }
+
+        .social-links a i.fa-linkedin-square:hover {
+            color: #0077b5;
+        }
+
+        .social-links a i.fa-github:hover {
+            color: #333;
+        }
+
+        .social-links a:hover {
+            background-color: transparent;
+        }
+
+        /* İçerik Alanı */
+        .container {
+            margin-left: 220px;
+            padding: 20px;
+            flex: 1; /* İçeriğin sayfanın tamamını doldurmasını sağlar */
+        }
+
+        /* Başlık Stili */
+        header {
+            background-color: #20b2aa;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #fff;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: #583E2F;
+            font-size: 1.5em;
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        #about-me {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        #goals {
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background-color: #BCAA9E;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card h3 {
+            text-align: center;
+        }
+
+        .project-card p {
+            text-align: left;
+        }
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .project-photo {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .project-photo img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .project-photo img:hover {
+            transform: scale(1.5);
+        }
+
+        #skills {
+            margin-top: 40px;
+        }
+
+        .skills-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .skills-list li {
+            background-color: #BA8460;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .skills-list li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Video Stili */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #20b2aa;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #583E2F;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#about-me">Hakkımda</a>
+        <a href="#projects">Projelerim</a>
+        <a href="#skills">Becerilerim</a>
+        <a href="#goals">Hedeflerim</a>
+        <a href="#video">Video</a>
+
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/furkan-kandemir/" target="_blank">
+                <i class="fa fa-linkedin-square"></i>
+            </a>
+            <a href="https://github.com/furkankndmir4" target="_blank">
+                <i class="fa fa-github"></i>
+            </a>
+        </div>
+    </nav>
+    </nav>
+
+    <div class="container">
+        <section id="about-me">
+            <h2>Hakkımda</h2>
+            <p>Merhaba ben Furkan Kandemir. Süleyman Demirel Üniversitesi Bilgisayar Mühendisliği 3.sınıf öğrencisiyim. Robotik ve bilgisayarlı görü alanlarında kendimi geliştiriyor ve projeler üretiyorum. Telefon ve bilgisayar dünyasındaki teknolojileri ve gelişmeleri yakından takip etmeyi ve bu cihazlardaki donanımların nasıl çalıştığı hakkında araştırma yapmayı seviyorum. 2023 yılında Teknofest Engelsiz Yaşam Teknolojileri Kategorisinde "Görüntü İşleme Tabanlı Protez El" ve 2024 yılında Teknofest Tarımsal İnsansız Kara Aracı Kategorisinde "StrykV" projeleriyle finale kalan Dyna Robotics takımında yazılım geliştirme ekibinde aktif bir şekilde rol almaktayım. C, C#, Java ve Python dilleri üzerine yeterli bir bilgiye sahibim; ancak projelerde ağırlıklı olarak Python dilini kullanıyorum.</p>
+        </section>
+
+        <section id="projects">
+            <h2>Projelerim</h2>
+            <div class="project-card">
+                <h3>Proje 1: Görüntü İşleme Tabanlı Robotik El</h3>
+                <p>Üniversite hayatımın ilk senesinde, Teknofest Engelsiz Yaşam Teknolojileri yarışmasında finalist olma başarısı göstererek Dyna Robotics takımında görüntü işleme yöntemlerini kullanarak robotik bir el geliştirdim. İstanbul'da düzenlenen yarışmaya katılarak ilk yılımda değerli bir tecrübe edindim.</p>
+            </div>
+            <div class="project-photo">
+                <img src="img/20230501_145204.jpg" alt="Proje 1 Fotoğrafı">
+            </div>
+
+             <div class="project-card">
+                <h3>Proje 2: StrykV</h3>
+                <p>Üniversite hayatımın ikinci senesinde, Teknofest Tarımsal İnsansız Kara Aracı yarışması kapsamında Dyna Robotics takımında otonom bir araç geliştirdim. Geliştirdiğimiz araca "StrykV" adını verdik. Bu projeyi değerli hocam Fatih Gökçe'nin danışmanlığında yürüttüm ve yazılım geliştirme ekibinde aktif olarak yer aldım.  Yarışmada finalist olma başarısını tekrar göstererek İzmir'de düzenlenen yarışmaya katıldım. 1 yıllık yorucu bir süreçti, ancak bu süreçte çok güzel deneyimler kazandım.</p>
+            </div>
+            <div class="project-photo">
+                <img src="img/IMG-20240826-WA0008.jpg" alt="Proje 2 Fotoğrafı">
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Becerilerim</h2>
+            <ul class="skills-list">
+                <li>C Programlama</li>
+                <li>Python Programlama</li>
+                <li>C# Programlama</li>
+                <li>Java Programlama</li>
+                <li>Robotik Sistemler</li>
+                <li>Bilgisayarlı Görü</li>
+            </ul>
+        </section>
+
+        <section id="goals">
+            <h2>Hedeflerim</h2>
+            <p>Gelecekte, robotik alanında projeler geliştirmeye devam ederek savunma sanayi firmalarında çalışmayı planlamaktayım. Buna ek olarak teknolojideki gelişmeleri yakından takip ederek kendimi her zaman alanımda güncel tutmayı planlamaktayım.</p>
+        </section>
+
+        <section id="video">
+            <h2>Proje Videom</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/5-EHIgraMLo" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Furkan Kandemir - 2221032010</p>
+    </footer>
+
+</body>
+</html>
